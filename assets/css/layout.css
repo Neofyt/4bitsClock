@@ -1,0 +1,98 @@
+/* Mini-reset */
+body, table, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* Body */
+body {
+	background: #efefef;
+	color: #bbb;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
+	line-height: 20px;
+	text-shadow: white 1px 1px 0px;
+	text-align: center;
+}
+
+table {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -71px;
+	margin-top: -63px;
+}
+
+td {
+	vertical-align: bottom;
+}
+
+/* We want a light indication for hh and mm */
+thead td:nth-child(2n){
+	border-bottom: solid 1px #ccc;
+	height: 10px;
+	margin-bottom: 5px;
+}
+
+/* No border for the first cell */
+thead td:nth-child(1){
+	border: 0;
+}
+
+/* But a border for the squares */
+tbody td {
+	border: solid 1px #666;   
+	width: 20px;
+	height: 20px;
+}
+
+/* We hide some cells which will act as separators */
+tbody tr td:nth-child(2n){
+	border: 0;  
+	width: 0;
+}
+
+tbody tr td:nth-child(6){
+	width: 10px;
+}
+
+tbody tr td:first-child{
+    border: 0;
+	border-right: solid 1px #ccc;
+	width: 20px;
+}
+
+/* Don't display the two last cells of the first column, they are useless */
+#a4, #a8 {
+	border: solid 1px #efefef;
+}
+
+/* A little animation, without it the site seems rather static */
+@-webkit-keyframes seconds {
+	0%   { width: 0; }
+	100% { width: 100%; }
+}
+@-moz-keyframes seconds {
+	0%   { width: 0; }
+	100% { width: 100%; }
+}
+@-ms-keyframes seconds {
+	0%   { width: 0; }
+	100% { width: 100%; }
+}
+
+#seconds {
+	height: 1px;
+	background: #666;
+	display: block;
+    -webkit-animation: seconds 60s infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation: seconds 60s infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation: seconds 60s infinite;
+    -ms-animation-timing-function: linear;
+}

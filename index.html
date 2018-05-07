@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" itemscope itemtype="http://schema.org/Webpage">
+
+	<head>
+		<title>4-bit Clock ...</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="4-bit Clock" />
+
+		<link rel="stylesheet" type="text/css" media="screen" href="assets/css/layout.css" />
+		<link type="image/x-icon" rel="shortcut icon" href="favicon.ico" />
+	</head>
+
+	<body>
+
+		<table>
+			<thead>
+				<tr>
+					<td colspan="2"></td>
+					<td colspan="3">hh</td>
+					<td></td>
+					<td colspan="3">mm</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td></td>
+					<td id="a1"></td>
+					<td></td>
+					<td id="b1"></td>
+					<td></td>
+					<td id="c1"></td>
+					<td></td>
+					<td id="d1"></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td></td>
+					<td id="a2"></td>
+					<td></td>
+					<td id="b2"></td>
+					<td></td>
+					<td id="c2"></td>
+					<td></td>
+					<td id="d2"></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td></td>
+					<td id="a4"></td>
+					<td></td>
+					<td id="b4"></td>
+					<td></td>
+					<td id="c4"></td>
+					<td></td>
+					<td id="d4"></td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td></td>
+					<td id="a8"></td>
+					<td></td>
+					<td id="b8"></td>
+					<td></td>
+					<td id="c8"></td>
+					<td></td>
+					<td id="d8"></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="2"></td>
+					<td colspan="7" id="counter"><span id="seconds">&nbsp;</span></td>
+				</tr>
+			</tfoot>
+		</table>
+
+		<script type="text/javascript">
+			function doTheMath(a,b){
+				switch (b){
+					case "3":
+						displaySquare(a,1);
+						displaySquare(a,2);
+						break;
+					case "5":
+						displaySquare(a,1);
+						displaySquare(a,4);
+						break;
+					case "6":
+						displaySquare(a,2);
+						displaySquare(a,4);
+						break;
+					case "7":
+						displaySquare(a,1);
+						displaySquare(a,2);
+						displaySquare(a,4);
+						break;
+					case "9":
+						displaySquare(a,1);
+						displaySquare(a,8);
+						break;
+					default:
+						displaySquare(a,b);
+				}
+			}
+
+			function displaySquare(a,b){
+				if (b !== "0"){ document.getElementById(a+b).style.backgroundColor  = '#666'; }
+			}
+
+			function run(){
+				var cells = document.getElementsByTagName("td");
+				for(i=0; i<cells.length; i++){
+					cells[i].style.backgroundColor  = '#efefef';
+				}
+				document.getElementById("counter").style.backgroundColor  = '#ccc';
+
+				var today = new Date(),
+					hours = today.getHours(),
+					min = today.getMinutes(),
+					ab = ("0"+ hours).slice(-2),
+					cd = ("0"+ min).slice(-2),
+					a = ab.substr(0,1),
+					b = ab.substr(1,1),
+					c = cd.substr(0,1),
+					d = cd.substr(1,1);
+
+				doTheMath("a",a);
+				doTheMath("b",b);
+				doTheMath("c",c);
+				doTheMath("d",d);
+			}
+
+			window.onload = run;
+			setInterval(run, 60000);
+		</script>
+	</body>
+</html>
